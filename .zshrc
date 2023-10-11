@@ -61,6 +61,7 @@ alias ls='lsd --group-dirs=first'
 alias cat='/bin/batcat --paging=never'
 alias catn='cat'
 alias catnl='batcat'
+alias nvim='/home/emerson/nvim-linux64/bin/nvim'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -150,3 +151,8 @@ bindkey "^[[3~" delete-char
 bindkey "^[[1;3C" forward-word
 bindkey "^[[1;3D" backward-word
 source ~/.powerlevel10k/powerlevel10k.zsh-theme
+
+#Opean key
+# Add this line to your shell profile (e.g., ~/.bashrc or ~/.zshrc)
+export OPENAI_API_KEY=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
+
