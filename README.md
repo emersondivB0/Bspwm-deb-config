@@ -2,7 +2,7 @@
 
 1.- How to use it:
 
-git clone https://github.com/xJackSx/BSPWM-deb-config.git
+git clone https://github.com/emersondivB0/Bspwm-deb-config.git
 
 cd BSPWM-deb-config
 
