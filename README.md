@@ -1,4 +1,4 @@
-# Script Parrot
+# Script BSPWM
 
 1.- Uso del Script
 
