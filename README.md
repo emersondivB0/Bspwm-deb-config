@@ -22,52 +22,52 @@ Se ubican en la carpeta:
 * *[Bspwm](https://wiki.archlinux.org/title/Bspwm_(Español)#:~:text=bspwm%20es%20un%20gestor%20de,controla%20a%20través%20de%20mensajes.)*: el windows manager
 	
 ```
-	$sudo pacman -Sy bspwm
+	sudo pacman -Sy bspwm
 ```
 
 * *[Sxhkd](https://wiki.archlinux.org/title/Sxhkd_(Español))*: el mapeo de teclas par los atajos de teclado
 
 ```
-	$sudo pacman -S sxhkd
+	sudo pacman -S sxhkd
 ```
 
 
 * *[Polybar](https://polybar.github.io)*: la barra superior
 
 ```
-	$sudo pacman -S polybar
+	sudo pacman -S polybar
 ```
 
 * *[zsh](https://www.zsh.org)*: shell interactiva y brutal (amo bash también)
 
 ```
-	$sudo pacman -S zsh
+	sudo pacman -S zsh
 ```
 
 * *[Rofi](https://github.com/davatorium/rofi)*: aplicación para buscar y lanzar aplicaciones, cambiar ventanas y otras cosas (para resumir bastante)
 
 ```
-	$sudo pacman -S rofi
+	sudo pacman -S rofi
 ```
 
 * *[Feh](https://wiki.archlinux.org/title/Feh_(Español))*: gestor de imágenes, administrador de fondos de escritorio para wallpapers estáticos
 
 ```
-	$sudo pacman -S feh
+	sudo pacman -S feh
 ```
 
 
 * *[Variety](https://github.com/varietywalls/variety)*: gestor de fondos de escritorio dinámicos, muy configurable para que el fondo cambie cada *x* tiempo, ya sea desde sitios online o deste las carpetas que escojas.
 
 ```
-	$sudo pacman -S variety
+	sudo pacman -S variety
 ```
 
 
 * *[Conky](https://github.com/brndnmtthws/conky)*: monitor de sitema para *X*. Me obsesiona saber los recursos del sistema, por eso siempre lo pongo
 
 ```
-	$sudo pacman -S conky
+	sudo pacman -S conky
 ```
 
 * *[Picom](https://github.com/yshui/picom)*: compositor brutal par *X11* -> transparencias.
@@ -75,16 +75,25 @@ Se ubican en la carpeta:
 Este es entretenido de instalar, requiere dependencias específicas
 
 ```
-	$sudo pacman -S meson libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev libpcre3 libpcre3-dev
-
-	$git clone https://github.com/ibhagwan/picom.git
-	$cd picom
-	$git submodule update --init --recursive
-	$meson --buildtype=release . build
-	$ninja -C build
-	$sudo ninja -C build install
-
-
+	sudo pacman -S meson libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev libpcre3 libpcre3-dev
+```
+```
+	git clone https://github.com/ibhagwan/picom.git
+```
+```
+	cd picom
+```
+```
+	git submodule update --init --recursive
+```
+```
+	meson --buildtype=release . build
+```
+```
+	ninja -C build
+```
+```
+	sudo ninja -C build install
 ```
 
 
