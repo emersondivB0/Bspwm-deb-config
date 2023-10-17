@@ -2,7 +2,7 @@
 
 Leer toda la guía primero, antes de comenzar.
 
-## 1.- Preparar el ambiente
+## 0.- Preparar el ambiente
 
 Para ir preparando el sistema, en la carpeta de usuario clonan el repo:
 
