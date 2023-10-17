@@ -61,6 +61,7 @@ alias ls='lsd --group-dirs=first'
 alias cat='/bin/batcat --paging=never'
 alias catn='cat'
 alias catnl='batcat'
+alias vtop='vtop --theme brew'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

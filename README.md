@@ -19,6 +19,20 @@ Se ubican en la carpeta:
 
 ## 1.- Instalar los paquetes necesarios
 
+#### Software que necesitan y tal vez no esté instalado:
+
+1. **Git**: Sistema de control de versiones para rastrear cambios en archivos y colaborar en proyectos de desarrollo de software.
+
+2. **Neovim / Vim**: Editores de texto potentes y altamente configurables utilizados para programación y edición de texto en la línea de comandos. Uso Neovim.
+
+3. **XCB**: Biblioteca de conexión X (X protocol C-language Binding) utilizada para interactuar con el servidor X Window System en sistemas Unix.
+
+4. **CMake**: Herramienta de generación de proyectos que simplifica la construcción de software y permite compilar programas en varios sistemas y entornos de compilación.
+
+5. **Scrot**: Utilidad de captura de pantalla en línea de comandos para tomar y guardar capturas de pantalla en sistemas Unix/Linux.
+
+**Ahora si los principales del repositorio:**
+
 * *[Bspwm](https://wiki.archlinux.org/title/Bspwm_(Español)#:~:text=bspwm%20es%20un%20gestor%20de,controla%20a%20través%20de%20mensajes.)*: el windows manager
 	
 ```
@@ -96,18 +110,226 @@ Este es entretenido de instalar, requiere dependencias específicas
 	sudo ninja -C build install
 ```
 
+* *[Powerlevel10k](https://github.com/romkatv/powerlevel10k)*: tema de terminal, junto con zsh se puede hacer una terminal mucho más amigable y amistosa.
 
-#### Software que neecsitan y tal vez no esté instalado:
+```
+	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k
+```
+```
+	echo 'source ~/.powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+```
+También se instala para usuario root:
 
-1. **Git**: Sistema de control de versiones para rastrear cambios en archivos y colaborar en proyectos de desarrollo de software.
+```
+	sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/.powerlevel10k
+```
 
-2. **Neovim / Vim**: Editores de texto potentes y altamente configurables utilizados para programación y edición de texto en la línea de comandos. Uso Neovim.
+* *[lsd](https://github.com/lsd-rs/lsd)*: es un ls más futurista
 
-3. **XCB**: Biblioteca de conexión X (X protocol C-language Binding) utilizada para interactuar con el servidor X Window System en sistemas Unix.
+```
+	sudo pacman -S lsd
+```
 
-4. **CMake**: Herramienta de generación de proyectos que simplifica la construcción de software y permite compilar programas en varios sistemas y entornos de compilación.
+* *[kitty](https://sw.kovidgoyal.net/kitty/)*: esta terminal aceptó todas las configuraciones sin problemas, URxvt era la que usaba siempre, pero sólo un software no mostró bien y por eso cambié.
 
-5. **Scrot**: Utilidad de captura de pantalla en línea de comandos para tomar y guardar capturas de pantalla en sistemas Unix/Linux.
+```
+	sudo pacman -S kitty
+```
 
 
 
+## 2.- Configuraciones
+
+Importante, revisen la carpeta Config del repo y la .config de su usuario, antes de sobreescribir la configuración, guárdenla en un backup, por si acaso. Si no existe config previa, no hay problema entonces. Eso también aplica a .zshrc
+
+ Copiamos la config y el tema Nord de Rofi (el tema es opcional) para cambiar de tema en rofi puse el atajo de teclado *super + F11*:
+
+```
+	cp rofi/config.rasi ~/.config/rofi/
+```
+
+```
+	mkdir -p ~/.config/rofi/themes
+```
+```
+	cp rofi/nord.rasi ~/.config/rofi/themes/
+```
+
+Instalar las fuentes, primero verifiquen dónde están, puede ser en /usrlocal/share, en /usr/share, incluso en usuario ~/.local/share
+
+```
+	sudo cp -v fonts/Nerd/* ~/.local/share
+```
+
+ Instalamos las Fuentes de Polybar
+
+
+```
+	sudo cp -v Config/polybar/fonts/* /usr/share/fonts/truetype/
+```
+
+Configuraciones para kitty:
+
+```
+	sudo cp -rv kitty /opt/
+```
+```
+	sudo cp -rv Config/kitty /root/.config/
+```
+
+El resto de archivos de configuración los pueden sólo copiar y pegar, aunque recomiendo ir uno por uno, queda de su parte:
+
+```
+	cp -rv Config/* ~/.config/
+```
+
+Las configuraciones de terminal y zsh:
+
+```
+	rm -rf ~/.zshrc
+```
+```
+	cp -v .zshrc ~/.zshrc
+```
+```
+	cp -v .p10k.zsh ~/.p10k.zsh
+```
+```
+	sudo cp -v .p10k.zsh-root /root/.p10k.zsh
+```
+
+Plugins zsh:
+
+
+```
+	sudo pacman -S zsh-syntax-highlighting zsh-autosuggestions zsh-autocomplete
+```
+```
+	sudo mkdir /usr/share/zsh-sudo
+```
+```
+	cd /usr/share/zsh-sudo
+```
+```
+	sudo wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/
+```
+```
+	sudo.plugin.zsh
+```
+
+
+ Cambiando de SHELL a zsh
+
+
+```
+	chsh -s /usr/bin/zsh
+```
+```
+	sudo usermod --shell /usr/bin/zsh root
+```
+```
+	sudo ln -s -fv ~/.zshrc /root/.zshrc
+```
+
+
+ Asignamos Permisos a los Scritps esta parte es opcional, sólo si da algún problema
+
+```
+chmod +x ~/.config/bspwm/bspwmrc
+```
+```
+chmod +x ~/.config/bspwm/scripts/bspwm_resize
+```
+```
+chmod +x ~/.config/polybar/launch.sh
+```
+```
+sudo chmod +x /usr/local/bin/screenshot
+```
+
+
+ Configuramos el Tema de Rofi
+
+```
+	rofi-theme-selector
+```
+
+
+## 3.- Datos extra
+
+En este punto con reiniciar la máquina, escoger bspwm como sesión en la ventana de login, ya debería funcionar todo. Pero, cada sistema y cada hardware son distintos. Cualquier cosa preguntan y vemos qué se puede hacer.
+
+Mientras, revisen todo, poco a poco, para mí han sido meses aprendiendo, aún luego de usar linux por años. Mucho de aquí es Frankenstein de otras configuraciones, mías, de Arcolinux, de otra gente. Al final, es adaptarlo a tu conveniencia.
+
+Como tips extra, la mayoría de las configuraciones están en .config dentro de la carpeta de usuario. Si observan bien, encontrarán 2 carpetas de sxhkd, una está dentro de la carpeta bspwm, eso es porque puse el launcher para bspwm del Arcolinux, me pareció mejor, más ordenado.
+
+Dentro de ~/.config/bspwm/sxhkd está el archivo de configuración de todos los atajos de teclado, la tecla super el la tecla 'windows'. Puse varias personales, las pueden cambiar. La terminal es *super + t* por ejemplo, revisen esa config y pongan o quiten aplicaciones de acuerdo a lo que usen o tengan instalado.
+
+Puse un launcher de rofi que seguro les guste, es con *super + d*
+
+Si les gusta ser más minnimalistas,  o quieren impresionar a la mamá pareciendo hackers, instalen 'dmenu', es un launcher de aplicaciones, lo abrirían con *super + shift + d* es una barrita superior, donde teclean la aplicación y luego enter.
+
+Hay software y configs que no puse ahí, pero recomiendo y uso.
+
+* *[vtop](https://es.linux-console.net/?p=401)* es un monitor de recursos en terminal, más bonito que htop, no mejor, cada uno sirve a su propósito. Entren al enlace, yo uso el tema brew. En la config que pasé, es el tema que se usa por defecto.
+
+* *[Neovim](https://neovim.io)*: el mejor editor para mi gusto, migré definitivamente hace poco, se tarda en aprender, pero vale la pena, sobre todo cuando lo tuneas.
+
+Ok, en ~/.config/bspwm/bspwmrc está la config básica del WM, lo primero que verán es la geometría y espaciado, 
+
++ window_gap: espacio entre ventanas
++ top_padding: espacio superio de las ventanas, para darle espacio a la polybar
++ bottom_pading: espacio inferios, etc
+
+También encontrarán reglas para algunas aplicaciones como las que se abren fullscreen por defecto, o las que se abren en un workspace específico, pueden hacer lo que quieran ahí.
+
+Ahí tambien está el autostat.sh el archivo que arranca todo el WM, si da error o algo le dan permisos de ejecución
+```
+	chmod +x ~/.config/bspwm/autostart.sh
+```
+
+Ahí cargan todas las aplicaciones y configuraciones del escritorio, verán líneas como esta:
+```
+feh --bg-fill /usr/share/backgrounds/archlinux/arch-wallpaper.jpg &
+```
+Esto establece el fondo de escritorio con feh, la ruta la pueden cambiar, aunque yo no uso feh.
+
+Verán esta:
+```
+run variety &
+```
+es el que uso para los fondos, revisenla, y configuren a gusto.
+
+Puse Conky para que siempre esté presente:  
+```
+killall conky
+conky -c $HOME/.config/bspwm/system-overview &
+```
+ Pueden desmarcar cualquiera o agregar para abrir aplicaciones apenas enciendan el equipo: 
+ 
+```
+run firefox &
+```
+
+### ZSH
+
+Esta parte es importante.
+
+~/.zshrc es la configuración principal de la terminal, tienen para días de diversión revisándola y modificándola.
+
+una parte importante son los alias, son caminos cortos a comandos que usen seguido, quité los míos y dejé los más básicos, por ejemplo, hay uno:
+```
+alias vtop='vtop --theme brew'
+```
+este alias hace que al ejecutar *vtop* en terminal, se abra con el tema brew por defecto, pueden cambiarlo al tema que sea o eliminarlo y dejar vtop por defecto.
+
+Un alias que uso, es este:
+```
+alias upate='sudo pacman -Syyu'
+```
+así para actualizar el sistema, sólo debo escribir update y listo. Los invito a jugar con los alias.
+
+### Polybar
+
+
+Esta es otra bien extensa, pero tal vez la más entretenida. La barra superior
