@@ -267,6 +267,14 @@ Dentro de ~/.config/bspwm/sxhkd está el archivo de configuración de todos los 
 
 Puse un launcher de rofi que seguro les guste, es con *super + d*
 
+Para reiniciar las configuraciones de Bspwm es con: *super + shift + r*
+Para reiniciar las configuraciones de Sxhkd es con: *super + shift + s*
+Para reiniciar las configuraciones de terminal es con:
+```
+	source ~/.zshrc
+```
+
+
 Si les gusta ser más minnimalistas,  o quieren impresionar a la mamá pareciendo hackers, instalen 'dmenu', es un launcher de aplicaciones, lo abrirían con *super + shift + d* es una barrita superior, donde teclean la aplicación y luego enter.
 
 Hay software y configs que no puse ahí, pero recomiendo y uso.
@@ -331,5 +339,31 @@ así para actualizar el sistema, sólo debo escribir update y listo. Los invito 
 
 ### Polybar
 
+Recuerden reiniciar bspwm para cargar los cambios que hagan.
 
-Esta es otra bien extensa, pero tal vez la más entretenida. La barra superior
+Esta es otra bien extensa, pero tal vez la más entretenida. La barra superior, la configuración está en ~/.config/polybar, El lanzador de la barra (que también debería tene permiso de ejecucuón) es launch.sh
+
+En esta configuración, son varios páneles, y cada panel se le puede agregar módulos.
+
+yo puse los workspaces en el centro y la config está en ~/.config/polybar/workspace.ini
+
+Partes importantes de la configuración: 
+
+width = 20% ancho total que va a tener esta sección
+height = 25 alto total de esta sección
+radius-top = 10.0   radio superor de las esquinas
+radius-bottom = 10.0   radio inferior de las esquinas
+
+[bar/primary]: es el panel que  tiene todos los workspaces, el ofset-y es para cuadrar si lo quieren separado de la parte superior de la pantalla. El offset-x es dónde quieren que comience la barra, en términos de posición horizontal.
+
+modules-center: es la propiedad que indica qué módulos quieres ver en el panel, en este caso los workspaces, pero puedes poner los que quieras, siempre que de el espacio.
+
+[modules/workspaces]: es el elementoq ue se mostrará en el panel central, en este caso, aquí verán los íconos de cada workspace, pueden poner los que quieran mientras los acepte la barra, los que están los busqué yo.
+
+En ~/.config/polybar/colors.ini está el mapeo de colores, definidos con variables, por ejemplo:
+
+bg = #99435060 indica un color en hexadecimal, los primeros 2 dígitos son el nivel de transparencia, lo puse en 99 = 60%, pueden cambiarlo como quieran, los otros 6 dígitos son el color como tal, hay bastante para jugar.
+
+Los invito a revisar los otros páneles y módulos por su cuenta, quiten y pongan los que quieran.
+
+PAZ!
